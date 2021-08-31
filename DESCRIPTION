@@ -1,0 +1,18 @@
+Package: variant
+Type: Package
+Title: Quantifying Dataframe Changes
+Version: 0.1.0
+Author: Phil G. Rugwiro
+Maintainer: Phil G. Rugwiro <pgrugwiro@gmail.com>
+Description: This package is used to identify and quantify the changes in a dataframe state. It does so by calculating the correlation matrix in the initial state as well as the correlation matrix in the final state to determine the relationship of each column with the other columns in the dataset in both the initial and final states. It then outputs a vector of columns that have shown a significant change in their relationship with other columns in the dataset from the initial to the final state. 
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    bigmemory,
+    doParallel,
+    dplyr,
+    foreach,
+    ggplot2,
+    parallel
+RoxygenNote: 7.1.1
