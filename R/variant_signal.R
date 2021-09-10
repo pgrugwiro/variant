@@ -53,7 +53,15 @@ variant_signal <- function(df1, df2, alpha){
 
   no <- which(o_check > 0)
 
-  #calculating the means of each column
+
+  #calculating confidence intervals length
+
+  norm_cormat_1_cil <- sapply(norm_cormat_1, cil, 0.05)
+  norm_cormat_2_cil <- sapply(norm_cormat_2, cil, 0.05)
+
+
+
+   #calculating the means of each column
 
   col_means_1 <- sapply(norm_cormat_1, mean)
   col_means_2 <- sapply(norm_cormat_2, mean)
@@ -70,6 +78,48 @@ variant_signal <- function(df1, df2, alpha){
   perc_increase <- (mean(diff_colmeans_no) - mean(diff_colmeans))*100/mean(diff_colmeans)
 
   results <- list(overlap_perc = o, no_overlap_ind = no, signal = perc_increase)
+
+
+  #graphic
+
+  lower_bound <- min(c(col_means_1-norm_cormat_1_cil/2,col_means_2-norm_cormat_2_cil/2)) -
+    .2*mean(c(col_means_1-norm_cormat_1_cil/2,col_means_2-norm_cormat_2_cil/2))
+
+  upper_bound <- max(c(col_means_1+norm_cormat_1_cil/2,col_means_2+norm_cormat_2_cil/2)) +
+    .2*mean(c(col_means_1-norm_cormat_1_cil/2,col_means_2-norm_cormat_2_cil/2))
+
+
+  opar <- par(no.readonly = T)
+  par(mfrow = c(2,1))
+  plot(1, type="n", xlab="Col Index", ylab="C.I.", main = "All Columns", cex.main = 0.9,
+       xlim=c(0, length(col_means_2)), ylim=c(lower_bound, upper_bound))
+  for (i in 1:length(col_means_1)) lines(c(i+0.5,i+0.5),
+                                         c(col_means_1[i]-norm_cormat_1_cil[i]/2,
+                                           col_means_1[i]+norm_cormat_1_cil[i]/2), col = "blue")
+  for (i in 1:length(col_means_2)) lines(c(i+0.5,i+0.5),
+                                         c(col_means_2[i]-norm_cormat_2_cil[i]/2,
+                                           col_means_2[i]+norm_cormat_2_cil[i]/2), col = "red")
+
+
+
+  lower_bound_no <- min(c(col_means_1[no]-norm_cormat_1_cil[no]/2,col_means_2[no]-norm_cormat_2_cil[no]/2)) -
+    .2*mean(c(col_means_1[no]-norm_cormat_1_cil[no]/2,col_means_2[no]-norm_cormat_2_cil[no]/2))
+
+  upper_bound_no <- max(c(col_means_1[no]+norm_cormat_1_cil[no]/2,col_means_2[no]+norm_cormat_2_cil[no]/2)) +
+    .2*mean(c(col_means_1[no]-norm_cormat_1_cil[no]/2,col_means_2[no]-norm_cormat_2_cil[no]/2))
+
+
+  plot(1, type="n", xlab="", ylab="C.I.", main = "Signal (Non-Overlapping) Columns", cex.main = 0.9,
+       xlim=c(0, length(col_means_2[no])), ylim=c(lower_bound_no, upper_bound_no))
+  for (i in 1:length(col_means_1[no])) lines(c(i+0.5,i+0.5),
+                                             c(col_means_1[no][i]-norm_cormat_1_cil[no][i]/2,
+                                               col_means_1[no][i]+norm_cormat_1_cil[no][i]/2), col = "blue")
+  for (i in 1:length(col_means_2[no])) lines(c(i+0.5,i+0.5),
+                                             c(col_means_2[no][i]-norm_cormat_2_cil[no][i]/2,
+                                               col_means_2[no][i]+norm_cormat_2_cil[no][i]/2), col = "red")
+
+
+  par(opar)
 
 
   return(results)
