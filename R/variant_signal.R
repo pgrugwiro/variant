@@ -89,7 +89,7 @@ variant_signal <- function(df1, df2, alpha){
     .2*mean(c(col_means_1-norm_cormat_1_cil/2,col_means_2-norm_cormat_2_cil/2))
 
 
-  opar <- par(no.readonly = T, mar = c(1,1,1,1))
+  opar <- par(no.readonly = T, mar = c(2,2,2,2))
   par(mfrow = c(2,1))
   plot(1, type="n", xlab="Col Index", ylab="C.I.", main = "All Columns", cex.main = 0.9,
        xlim=c(0, length(col_means_2)), ylim=c(lower_bound, upper_bound))
