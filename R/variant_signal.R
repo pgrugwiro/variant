@@ -56,8 +56,8 @@ variant_signal <- function(df1, df2, alpha){
 
   #calculating confidence intervals length
 
-  norm_cormat_1_cil <- sapply(norm_cormat_1, cil, 0.05)
-  norm_cormat_2_cil <- sapply(norm_cormat_2, cil, 0.05)
+  norm_cormat_1_cil <- as.vector(unlist(sapply(norm_cormat_1, cil, 0.05)[3,]))
+  norm_cormat_2_cil <- as.vector(unlist(sapply(norm_cormat_2, cil, 0.05)[3,]))
 
 
 
@@ -93,10 +93,10 @@ variant_signal <- function(df1, df2, alpha){
     par(mfrow = c(2,1))
     plot(1, type="n", xlab="Col Index", ylab="C.I.", main = "All Columns", cex.main = 0.9,
          xlim=c(0, length(col_means_2)), ylim=c(lower_bound, upper_bound))
-    for (i in 1:length(col_means_1)) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_1)) lines(c(i,i),
                                            c(col_means_1[i]-norm_cormat_1_cil[i]/2,
                                              col_means_1[i]+norm_cormat_1_cil[i]/2), col = "blue")
-    for (i in 1:length(col_means_2)) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_2)) lines(c(i,i),
                                            c(col_means_2[i]-norm_cormat_2_cil[i]/2,
                                              col_means_2[i]+norm_cormat_2_cil[i]/2), col = "red")
 
@@ -111,10 +111,10 @@ variant_signal <- function(df1, df2, alpha){
 
     plot(1, type="n", xlab="", ylab="C.I.", main = "Signal (Non-Overlapping) Columns", cex.main = 0.9,
          xlim=c(0, length(col_means_2[no])), ylim=c(lower_bound_no, upper_bound_no))
-    for (i in 1:length(col_means_1[no])) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_1[no])) lines(c(i,i),
                                                c(col_means_1[no][i]-norm_cormat_1_cil[no][i]/2,
                                                  col_means_1[no][i]+norm_cormat_1_cil[no][i]/2), col = "blue")
-    for (i in 1:length(col_means_2[no])) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_2[no])) lines(c(i,i),
                                                c(col_means_2[no][i]-norm_cormat_2_cil[no][i]/2,
                                                  col_means_2[no][i]+norm_cormat_2_cil[no][i]/2), col = "red")
 
@@ -144,10 +144,10 @@ variant_signal <- function(df1, df2, alpha){
     par(mfrow = c(1,1))
     plot(1, type="n", xlab="Col Index", ylab="C.I.", main = "All Columns", cex.main = 0.9,
          xlim=c(0, length(col_means_2)), ylim=c(lower_bound, upper_bound))
-    for (i in 1:length(col_means_1)) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_1)) lines(c(i,i),
                                            c(col_means_1[i]-norm_cormat_1_cil[i]/2,
                                              col_means_1[i]+norm_cormat_1_cil[i]/2), col = "blue")
-    for (i in 1:length(col_means_2)) lines(c(i+0.5,i+0.5),
+    for (i in 1:length(col_means_2)) lines(c(i,i),
                                            c(col_means_2[i]-norm_cormat_2_cil[i]/2,
                                              col_means_2[i]+norm_cormat_2_cil[i]/2), col = "red")
 

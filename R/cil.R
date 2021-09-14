@@ -17,5 +17,9 @@
 cil <- function(x, alpha){
   z <- qnorm(1-alpha/2)
   ci <- 2*z*sd(x)/sqrt(length(x))
-  return(ci)
+  lb <- mean(x) - ci/2
+  ub <- mean(x) + ci/2
+  results <- list(lower_bound = lb, upper_bound = ub, cil = ci)
+
+  return(results)
 }
