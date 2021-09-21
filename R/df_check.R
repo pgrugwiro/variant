@@ -1,5 +1,17 @@
 
 #' Dataframe check
+#'
+#'
+#' The df_check() function is included in the package to guide the user if the input data
+#' frames do not satisfy the requirements. E.g., the two data frames being analysed must have
+#' an equal number of variables, i.e., columns. They must also fulfil the numeric data type
+#' requirement. If any of these requirements is not fulfilled, an error message is displayed
+#' indicating that a problem exists. This helps the user save time in diagnosing the problem.
+#'
+#' The function takes as input two data frames and displays a message of validity of data frames
+#' as output.
+
+#'
 #' @param df1 First dataframe
 #' @param df2 Second dataframe
 #'

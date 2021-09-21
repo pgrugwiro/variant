@@ -17,7 +17,10 @@ no_overlap(x, y, alpha)
 indices where no confidence interval overlap exists
 }
 \description{
-Check for CI overlap
+The no_overlap() function is used to determine if two numeric vectors have overlapping
+confidence intervals of their population means using a desired level of significance.
+It takes as input two vectors and the level of significance and returns a Boolean value
+TRUE if no overlap exists and FALSE if overlap exists.
 }
 \examples{
 vecx <- rnorm(100)

@@ -1,0 +1,87 @@
+---
+title: "The Variant Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Variant Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## How to use the variant package
+
+This vignette will provide a brief overview of how the package is used. 
+
+Let's take an example of two random data frames for which we want to calculate the signal.
+
+```{r setup}
+library(variant)
+
+#data frames to check:
+
+df1 <- data.frame(matrix(rnorm(100), ncol = 5))
+df2 <- data.frame(matrix(rnorm(1000), ncol = 5))
+```
+
+
+### Checking data frame validity
+
+
+The first function will check if the data frames are numeric and have an equal number of columns:
+
+```{r}
+df_check(df1, df2)
+```
+
+
+### Calculating the correlation matrix
+
+The cormat function calculates the correlation matrix for the data frames:
+
+```{r}
+cormat(df1)
+```
+
+
+### Fisher's Transform
+
+The fisher_trans function transforms the r values in the correlation matrix to their respective z-scores:
+
+
+```{r}
+data.frame(lapply(cormat(df1), fisher_trans))
+```
+
+### Variant signal
+
+The variant signal will calculate the change on columns whose confidence interval of mean coeff of corr change vs overall change in data frames at a given level of significance. 
+
+```{r}
+variant_signal(df1, df2, 0.2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

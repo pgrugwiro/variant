@@ -2,8 +2,7 @@
 % Please edit documentation in R/variant_signal.R
 \name{variant_signal}
 \alias{variant_signal}
-\title{Variant Signal
-Detects the columns that changed significantly from one state in dataset 1 to another state in dataset 2.}
+\title{Variant Signal}
 \usage{
 variant_signal(df1, df2, alpha)
 }
@@ -18,8 +17,22 @@ variant_signal(df1, df2, alpha)
 list of columns that show significant change
 }
 \description{
-Variant Signal
-Detects the columns that changed significantly from one state in dataset 1 to another state in dataset 2.
+The variant_signal() is the last and most important function in the package.
+It pipelines all the helper functions and uses their output to compute
+the signal. It takes as input two data frames and a desired level of significance.
+It then checks for the data frames validity using the df_check() function and computes
+the correlation coefficient matrices for both data frames, if they are valid, using the
+cormat() function.  The correlation coefficients are transformed into their z-scores using
+the fisher_trans() function. Then confidence interval parameters for the mean correlation
+coefficient of each variable are calculated using the cil() function,
+overlapping percentages and presence or absence of overlap is determined with
+the percent_overlap(), no_overlap() functions respectively.
+The variant_signal() function then calculates average change for the non-overlapping
+category and compares it to the overall change. This comparison is displayed in terms
+of percentage and is called “signal”. Additional outputs of the variant_signal() functions
+are a list of percentage overlaps as computed by the percent_overlap() function, indices
+for which there is no overlap as determined by the no_overlap() function as well as a
+confidence interval plot for all the variables and for the non-overlapping variables.
 }
 \examples{
 

@@ -15,7 +15,15 @@ df_check(df1, df2)
 Returns an error message if the two dataframes do not have the same number of columns or if the elements in both dataframes are not numeric.
 }
 \description{
-Dataframe check
+The df_check() function is included in the package to guide the user if the input data
+frames do not satisfy the requirements. E.g., the two data frames being analysed must have
+an equal number of variables, i.e., columns. They must also fulfil the numeric data type
+requirement. If any of these requirements is not fulfilled, an error message is displayed
+indicating that a problem exists. This helps the user save time in diagnosing the problem.
+}
+\details{
+The function takes as input two data frames and displays a message of validity of data frames
+as output.
 }
 \examples{
 \dontrun{df1 <- data.frame(matrix(rnorm(100), ncol = 5))

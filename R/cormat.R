@@ -1,7 +1,13 @@
-
-
-#' Correlation matrix:
-#' Calculates and returns the correlation matrix of a dataframe. Specifically designed to work with large dataset using parallelization tools.
+#' Correlation matrix
+#'
+#'
+#' The cormat() function is used to calculate the correlation matrix of any given numerical
+#' data frame. It is specifically designed to handle large dataset by making use of parallel
+#' computing. It takes in as input a numerical data frame of n columns and any number of rows
+#' and it returns a n x n-1 matrix of correlation coefficients. n-1 is because the correlation
+#' coefficients of any given variable with itself is removed in the output.
+#'
+#'
 #' @param df dataframe for which a correlation matrix is to be calculated
 #'
 #' @return Correlation matrix

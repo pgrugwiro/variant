@@ -15,7 +15,11 @@ cil(x, alpha)
 confidence interval length at the given level of significance
 }
 \description{
-Confidence interval length
+The cil() function calculates the confidence interval parameters of a numeric vector.
+It takes in as input the numeric vector and the level of significance desired for the
+computation. As an output, it gives the population mean’s confidence interval lower and
+upper bounds, as well as a number that represents the length of the confidence interval,
+i.e., the difference between the upper bound and the lower bound of the confidence interval.
 }
 \examples{
 
